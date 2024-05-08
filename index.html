@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
     <head>
         <title>Warp Speed Travel Time Calculator</title>
         <meta charset="UTF-8">
@@ -12,6 +12,7 @@
                 <div><em>Travel Time</em>: 
                     <span>{{ years }}</span> years, 
                     <span>{{ months }}</span> months,  
+                    <span>{{ months }}</span> months, 
                     <span>{{ weeks }}</span> weeks,
                     <span>{{ days }}</span> days, 
                     <span>{{ hours }}</span> hours</div>
@@ -57,17 +58,27 @@
             </div>
         </div>
         <script>
+            "use strict";
             const app = new Vue({
                 el: "#app",
                 data: {
                     planetChoice: "",
-                    warpFactor: 1,
-                    years: 0,
-                    months: 0,
-                    weeks: 0,
-                    days: 0,
+                    warpFactor: 1,       
                 },
-                computed:{},
+                computed:{
+                    years: function(){
+                        return 0;
+                    },
+                    months: function(){
+                        return 0;                        
+                    },
+                    weeks: function(){
+                        return 0;                       
+                    },
+                    days: function(){
+                        return 0;                        
+                    },
+                },
                 watch: {},
                 methods: {
                     resetFields: function(){
