@@ -9,7 +9,12 @@
         <div id="app">
             <header>
                 <div id="calculation">
-                    <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>
+                    <div v-if="!planetChoice">
+                        <h2>Choose Planet to Travel To.</h2>
+                    </div>
+                    <div v-else>
+                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
+                    </div>
                     <div><em>Travel Time</em>: 
                         <span>{{ years }}</span> years, 
                         <span>{{ months }}</span> months, 
@@ -67,8 +72,6 @@
                     weeks: 0,
                     days: 0,
                 },
-                // computed:{},
-                // watch: {},
                 methods: {
                     resetFields: function(){
                         this.planetChoice = '';
