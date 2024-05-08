@@ -3,58 +3,58 @@
     <head>
         <title>Warp Speed Travel Time Calculator</title>
         <meta charset="UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     </head>
     <body>
         <div id="app">
-            <div id="calculation">
-                <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>
-                <div><em>Travel Time</em>: 
-                    <span>{{ years }}</span> years, 
-                    <span>{{ months }}</span> months, 
-                    <span>{{ weeks }}</span> weeks,
-                    <span>{{ days }}</span> days, 
-                    <span>{{ hours }}</span> hours</div>
-            </div>
-            <div>
-                <form>
-                    <div class="form-row">
-                        <div class="form-field">
-                            <label for="planet-choice">Planet Name</label>
-                            <select id="planet-choice" v-model="planetChoice">
-                                <option> </option>
-                                <option>Vulcan</option>
-                                <option>Andoria</option>
-                                <option>Qo'noS</option>
-                                <option>Bajor</option>
-                                <option>Ferenginar</option>
-                                <option>Risa</option>
-                                <option>Romulus</option>
-                                <option>Cardassia</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <label for="warp-factor">Warp factor</label>
-                            <select id="warp-factor" v-model="warpFactor">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>9.9</option>
-                            </select>
-                        </div>
-                        <div>
-                            <button type="reset" id="reset">Reset</button>
-                            <button type="submit">Calculate</button>
-                        </div>
+            <header>
+                <div id="calculation">
+                    <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>
+                    <div><em>Travel Time</em>: 
+                        <span>{{ years }}</span> years, 
+                        <span>{{ months }}</span> months, 
+                        <span>{{ weeks }}</span> weeks,
+                        <span>{{ days }}</span> days, 
+                        <span>{{ hours }}</span> hours</div>
+                </div>
+            </header>
+            <form v-on:reset="resetFields">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="planet-choice">Planet Name</label>
+                        <select id="planet-choice" v-model="planetChoice">
+                            <option> </option>
+                            <option>Vulcan</option>
+                            <option>Andoria</option>
+                            <option>Qo'noS</option>
+                            <option>Bajor</option>
+                            <option>Ferenginar</option>
+                            <option>Risa</option>
+                            <option>Romulus</option>
+                            <option>Cardassia</option>
+                        </select>
                     </div>
-                </form>
-            </div>
+                    <div class="form-field">
+                        <label for="warp-factor">Warp factor</label>
+                        <select id="warp-factor" v-model="warpFactor">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>9.9</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="reset" id="reset">Reset</button>
+                        <button type="submit">Calculate</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <script>
             const app = new Vue({
@@ -67,8 +67,8 @@
                     weeks: 0,
                     days: 0,
                 },
-                computed:{},
-                watch: {},
+                // computed:{},
+                // watch: {},
                 methods: {
                     resetFields: function(){
                         this.planetChoice = '';
