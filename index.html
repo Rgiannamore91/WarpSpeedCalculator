@@ -23,40 +23,73 @@
                         <span>{{ hours }}</span> hours</div>
                 </div>
             </header>
-            <form v-on:reset="resetFields">
+            <form v-on:reset="resetFields" v-on:submit="submitForm">
                 <div class="form-row">
-                    <div class="form-field">
-                        <label for="planet-choice">Planet Name</label>
-                        <select id="planet-choice" v-model="planetChoice">
-                            <option> </option>
-                            <option>Vulcan</option>
-                            <option>Andoria</option>
-                            <option>Qo'noS</option>
-                            <option>Bajor</option>
-                            <option>Ferenginar</option>
-                            <option>Risa</option>
-                            <option>Romulus</option>
-                            <option>Cardassia</option>
-                        </select>
-                    </div>
-                    <div class="form-field">
-                        <label for="warp-factor">Warp factor</label>
-                        <select id="warp-factor" v-model="warpFactor">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>9.9</option>
-                        </select>
+                    <legend>Travel Domain</legend>
+                    <div>
+                        <input type="radio" id="solar-system" value="solar-system" v-model="selectedDomain" @change="resetFields">
+                        <label for="solar-system">Solar System</label>
                     </div>
                     <div>
+                        <input type="radio" id="deep-space" value="deep-space" v-model="selectedDomain" @change="resetFields">
+                        <label for="deep-space">Deep Space</label>
+                    </div>
+                    <div v-if="selectedDomain === 'solar-system'">
+                        <div class="form-field">
+                            <label for="planet-choice">Planet Name</label>
+                            <select id="planet-choice" v-model="planetChoice">
+                                <option value=""> </option>
+                                <option value="Mercury">Mercury</option>
+                                <option value="Venus">Venus</option>
+                                <option value="Mars">Mars</option>
+                                <option value="Jupiter">Jupiter</option>
+                                <option value="Saturn">Saturn</option>
+                                <option value="Uranus">Uranus</option>
+                                <option value="Neptune">Neptune</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="warp-factor">Warp Factor</label>
+                            <select>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div v-else-if="selectedDomain === 'deep-space'">
+                        <div class="form-field">
+                            <label for="planet-choice">Planet Name</label>
+                            <select id="planet-choice" v-model="planetChoice">
+                                <option value=""> </option>
+                                <option value="Vulcan">Vulcan</option>
+                                <option value="Andoria">Andoria</option>
+                                <option value="quonos">Qo'noS</option>
+                                <option value="Bajor">Bajor</option>
+                                <option value="Ferenginar">Ferenginar</option>
+                                <option value="Risa">Risa</option>
+                                <option value="Romulus">Romulus</option>
+                                <option vlaue="Cardassia">Cardassia</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="warp-factor">Warp factor</label>
+                            <select id="warp-factor" v-model="warpFactor">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="9.9">9.9</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
                         <button type="reset" id="reset">Reset</button>
-                        <button type="submit">Calculate</button>
+                        <button type="submit" :disabled="!planetChoice">Calculate</button>
                     </div>
                 </div>
             </form>
@@ -71,11 +104,26 @@
                     months: 0,
                     weeks: 0,
                     days: 0,
+                    hours:0,
+                    selectedDomain: "solar-system",
+                    // isSubmitDisabled: true
                 },
+                // computed:{
+                //     disableSubmit: function () {
+                //         if (this.planetChoice !== '') {
+                //             this.isSubmitDisabled = false;
+                //         }else{
+                //             this.isSubmitDisabled = true;
+                //         }
+                //     }
+                // },
                 methods: {
                     resetFields: function(){
                         this.planetChoice = '';
                         this.warpFactor = 1;
+                    },
+                    submitForm: function(){
+
                     }
                 },
             });
