@@ -114,5 +114,4 @@ const exoplanets = {
     "Qo'noS" : new ExoPlanet("Qo'noS", 112, false, "nuq'neH!? (What do you want!?)"),
     "Romulus" : new ExoPlanet("Romulus", 130, false,"Jolan tru (find peace)"),
     "Bajor" : new ExoPlanet("Bajor", 52, true, "peldor joi"),
-
 };
