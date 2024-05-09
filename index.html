@@ -8,19 +8,12 @@
     <body>
         <div id="app">
             <header>
-                <div id="calculation">
-                    <div v-if="!planetChoice">
-                        <h2>Choose Planet to Travel To.</h2>
-                    </div>
-                    <div v-else>
-                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
-                    </div>
-                    <div><em>Travel Time</em>: 
-                        <span>{{ years }}</span> years, 
-                        <span>{{ months }}</span> months, 
-                        <span>{{ weeks }}</span> weeks,
-                        <span>{{ days }}</span> days, 
-                        <span>{{ hours }}</span> hours</div>
+                <h1>Warp Speed Travel Time Calculator</h1>
+                <div>
+                    <h3>Summary</h3>
+                    <p>
+                        This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
+                    </p>
                 </div>
             </header>
             <form v-on:reset="resetFields" v-on:submit="submitForm">
@@ -93,6 +86,22 @@
                     </div>
                 </div>
             </form>
+            <footer>
+                <div id="calculation">
+                    <div v-if="!planetChoice">
+                        <h2>Choose Planet to Travel To.</h2>
+                    </div>
+                    <div v-else>
+                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
+                    </div>
+                    <div><em>Travel Time</em>: 
+                        <span>{{ years }}</span> years, 
+                        <span>{{ months }}</span> months, 
+                        <span>{{ weeks }}</span> weeks,
+                        <span>{{ days }}</span> days, 
+                        <span>{{ hours }}</span> hours</div>
+                </div>
+            </footer>
         </div>
         <script>
             const app = new Vue({
