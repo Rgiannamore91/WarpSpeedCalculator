@@ -7,18 +7,48 @@
     </head>
     <body>
         <div id="app">
-            <div id="calculation">
-                <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>
-                <div><em>Travel Time</em>: 
-                    <span>{{ years }}</span> years, 
-                    <span>{{ months }}</span> months, 
-                    <span>{{ weeks }}</span> weeks,
-                    <span>{{ days }}</span> days, 
-                    <span>{{ hours }}</span> hours</div>
-            </div>
-            <div>
-                <form>
-                    <div class="form-row">
+            <header>
+                <h1>Warp Speed Travel Time Calculator</h1>
+                <div>
+                    <h3>Summary</h3>
+                    <p>
+                        This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
+                    </p>
+                </div>
+            </header>
+            <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
+                <div class="form-row">
+                    <legend>Travel Domain</legend>
+                    <div>
+                        <input type="radio" id="solar-system" value="solar-system" v-model="selectedDomain" @change="resetFields">
+                        <label for="solar-system">Solar System</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="deep-space" value="deep-space" v-model="selectedDomain" @change="resetFields">
+                        <label for="deep-space">Deep Space</label>
+                    </div>
+                    <div v-if="selectedDomain === 'solar-system'">
+                        <div class="form-field">
+                            <label for="planet-choice">Planet Name</label>
+                            <select id="planet-choice" v-model="planetChoice">
+                                <option> </option>
+                                <option>Mercury</option>
+                                <option>Venus</option>
+                                <option>Mars</option>
+                                <option>Jupiter</option>
+                                <option>Saturn</option>
+                                <option>Uranus</option>
+                                <option>Neptune</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="warp-factor">Warp Factor</label>
+                            <select>
+                                <option>1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div v-else-if="selectedDomain === 'deep-space'">
                         <div class="form-field">
                             <label for="planet-choice">Planet Name</label>
                             <select id="planet-choice" v-model="planetChoice">
@@ -48,13 +78,32 @@
                                 <option>9.9</option>
                             </select>
                         </div>
-                        <div>
-                            <button type="reset" id="reset">Reset</button>
-                            <button type="submit">Calculate</button>
-                        </div>
                     </div>
-                </form>
-            </div>
+
+                    <div>
+                        <button type="reset" id="reset">Reset</button>
+                        <button type="submit" v-bind:disabled="!formIsValid">Calculate</button>
+                    </div>
+                </div>
+            </form>
+            <footer>
+                <div id="calculation">
+                    <div v-if="!planetChoice">
+                        <h2>Choose Planet to Travel To.</h2>
+                    </div>
+                    <div v-else>
+                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
+                    </div>
+                    <div v-if="formSubmitted">
+                        <em>Travel Time</em>: 
+                        <span>{{ years }}</span> years, 
+                        <span>{{ months }}</span> months, 
+                        <span>{{ weeks }}</span> weeks,
+                        <span>{{ days }}</span> days, 
+                        <span>{{ hours }}</span> hours
+                    </div>
+                </div>
+            </footer>
         </div>
         <script>
             "use strict";
@@ -62,27 +111,27 @@
                 el: "#app",
                 data: {
                     planetChoice: "",
-                    warpFactor: 1,       
+                    warpFactor: 1,
+                    years: 0,
+                    months: 0,
+                    weeks: 0,
+                    days: 0,
+                    hours:0,
+                    selectedDomain: "solar-system",
+                    formSubmitted: false,
                 },
                 computed:{
-                    years: function(){
-                        return 0;
-                    },
-                    months: function(){
-                        return 0;                        
-                    },
-                    weeks: function(){
-                        return 0;                       
-                    },
-                    days: function(){
-                        return 0;                        
-                    },
+                    formIsValid: function () {
+                        return this.planetChoice
+                    }
                 },
-                watch: {},
                 methods: {
                     resetFields: function(){
                         this.planetChoice = '';
                         this.warpFactor = 1;
+                    },
+                    submitForm: function(){
+                        this.formSubmitted =true;
                     }
                 },
             });
