@@ -16,7 +16,7 @@
                     </p>
                 </div>
             </header>
-            <form v-on:reset="resetFields" v-on:submit="submitForm">
+            <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
                 <div class="form-row">
                     <legend>Travel Domain</legend>
                     <div>
@@ -94,12 +94,14 @@
                     <div v-else>
                         <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
                     </div>
-                    <div><em>Travel Time</em>: 
+                    <div v-if="formSubmitted">
+                        <em>Travel Time</em>: 
                         <span>{{ years }}</span> years, 
                         <span>{{ months }}</span> months, 
                         <span>{{ weeks }}</span> weeks,
                         <span>{{ days }}</span> days, 
-                        <span>{{ hours }}</span> hours</div>
+                        <span>{{ hours }}</span> hours
+                    </div>
                 </div>
             </footer>
         </div>
@@ -115,6 +117,7 @@
                     days: 0,
                     hours:0,
                     selectedDomain: "solar-system",
+                    formSubmitted: false,
                 },
                 computed:{
                     formIsValid: function () {
@@ -127,7 +130,7 @@
                         this.warpFactor = 1;
                     },
                     submitForm: function(){
-
+                        this.formSubmitted =true;
                     }
                 },
             });
