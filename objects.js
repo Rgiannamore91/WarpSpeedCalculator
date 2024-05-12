@@ -24,9 +24,6 @@ class EndoPlanet extends Planet {
     get observation() {
         return this._observation;
     }
-    makeObservation(){
-        alert(this._observation);
-    }
 };
 
 class ExoPlanet extends Planet {
@@ -40,9 +37,6 @@ class ExoPlanet extends Planet {
     } 
     get greeting(){
         return this._greeting;
-    }
-    greet() {
-        alert(this._greeting[this._arrayPosition])
     }
 };
 
