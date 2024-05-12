@@ -10,6 +10,8 @@ class Planet  {
         return this._name;
     }
     get distanceFromEarth(){
+        /* In Kilometers for Endo Planets,
+        in Light Years for Exo Planets. */ 
         return this._distanceFromEarth;
     }
 };
@@ -21,9 +23,6 @@ class EndoPlanet extends Planet {
     }
     get observation() {
         return this._observation;
-    }
-    makeObservation(){
-        console.log(this._observation);
     }
 };
 
@@ -38,9 +37,6 @@ class ExoPlanet extends Planet {
     } 
     get greeting(){
         return this._greeting;
-    }
-    greet() {
-        console.log(this._greeting[this._arrayPosition])
     }
 };
 
@@ -98,13 +94,13 @@ const neptuneObservations = [
 // Objects
 let idx = Math.floor(Math.random()*5);
 const endoplanets = {
-    "Mercury" : new EndoPlanet("Mercury", 0.000000391, mercuryObservations[idx]),
-    "Venus" : new EndoPlanet("Venus", 0.000000153, venusObservations[idx]),
-    "Mars" : new EndoPlanet("Mars", 0.000024, marsObservations[idx]),
-    "Jupiter" : new EndoPlanet("Jupiter", 0.000465, jupiterObservations[idx]),
-    "Saturn" : new EndoPlanet("Saturn", 0.000833, saturnObservations[idx]),
-    "Uranus" : new EndoPlanet("Uranus", 0.001697, uranusObservations[idx]),
-    "Neptune" : new EndoPlanet("Neptune", 0.002719, neptuneObservations[idx]),
+    "Mercury" : new EndoPlanet("Mercury", 77000000, mercuryObservations[idx]),
+    "Venus" : new EndoPlanet("Venus", 42000000, venusObservations[idx]),
+    "Mars" : new EndoPlanet("Mars", 225000000, marsObservations[idx]),
+    "Jupiter" : new EndoPlanet("Jupiter", 778000000, jupiterObservations[idx]),
+    "Saturn" : new EndoPlanet("Saturn", 1430000000, saturnObservations[idx]),
+    "Uranus" : new EndoPlanet("Uranus", 2880000000, uranusObservations[idx]),
+    "Neptune" : new EndoPlanet("Neptune", 4500000000, neptuneObservations[idx]),
 };
 
 const exoplanets = {
@@ -114,5 +110,4 @@ const exoplanets = {
     "Qo'noS" : new ExoPlanet("Qo'noS", 112, false, "nuq'neH!? (What do you want!?)"),
     "Romulus" : new ExoPlanet("Romulus", 130, false,"Jolan tru (find peace)"),
     "Bajor" : new ExoPlanet("Bajor", 52, true, "peldor joi"),
-
 };
