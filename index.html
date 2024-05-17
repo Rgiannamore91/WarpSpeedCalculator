@@ -2,122 +2,162 @@
 <html lang="en">
     <head>
         <title>Warp Speed Travel Time Calculator</title>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="index.css" rel="stylesheet">
     </head>
     <body>
         <div id="app">
             <header>
-                <h1>Warp Speed Travel Time Calculator</h1>
-                <div>
-                    <h3>Summary</h3>
-                    <p>
-                        This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
-                    </p>
+                <nav class="navbar navbar-inverse">
+                    <h1 class="navbar-text">Warp Speed Travel Time Calculator</h1>
+                </nav>
+
+                <div class="container">
+                    <div class="page-header">
+                        <h3>Summary</h3>      
+                    </div>
+                    <div class="summary">
+                        <p>
+                            This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
+                        </p>
+                    </div>   
                 </div>
             </header>
+            <hr>
             <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
                 <div class="form-row">
-                    <legend>Travel Domain</legend>
-                    <div>
-                        <input type="radio" id="solar-system" value="solar-system" v-model="selectedDomain" @change="resetFields">
-                        <label for="solar-system">Solar System</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="deep-space" value="deep-space" v-model="selectedDomain" @change="resetFields">
-                        <label for="deep-space">Deep Space</label>
-                    </div>
-                    <div v-if="selectedDomain === 'solar-system'">
-                        <div class="form-field">
-                            <label for="planet-choice">Planet Name</label>
-                            <select id="planet-choice" v-model="planetChoice" @change="resetOutput">
-                                <option> </option>
-                                <option>Mercury</option>
-                                <option>Venus</option>
-                                <option>Mars</option>
-                                <option>Jupiter</option>
-                                <option>Saturn</option>
-                                <option>Uranus</option>
-                                <option>Neptune</option>
-                            </select>
+                    
+                    <div class="container-fluid form-grid">
+                        <div class="row row-flex row-flex-wrap align-items-stretch">
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Domain</legend>
+                                <div class="well well-lg">
+                                    <div class="form-group">
+                                        <div>
+                                            <input type="radio" id="solar-system" value="solar-system" v-model="selectedDomain" @change="resetFields">
+                                            <label for="solar-system">Solar System</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="deep-space" value="deep-space" v-model="selectedDomain" @change="resetFields">
+                                            <label for="deep-space">Deep Space</label>
+                                        </div>  
+                                    </div>                          
+                                </div>                                
+                            </div>
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Details</legend>
+                                <div class="well well-lg">
+                                    <div class="form-group">
+                                        <div v-if="selectedDomain === 'solar-system'">
+                                            <div class="form-field">
+                                                <label for="planet-choice">Planet Name</label>
+                                                <select id="planet-choice" v-model="planetChoice" @change="resetOutput">
+                                                    <option> </option>
+                                                    <option>Mercury</option>
+                                                    <option>Venus</option>
+                                                    <option>Mars</option>
+                                                    <option>Jupiter</option>
+                                                    <option>Saturn</option>
+                                                    <option>Uranus</option>
+                                                    <option>Neptune</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="warp-factor">Warp Factor</label>
+                                                <select id="warp-factor" v-model="warpFactor" @change="resetOutput">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div v-else-if="selectedDomain === 'deep-space'">
+                                            <div class="form-field">
+                                                <label for="planet-choice">Planet Name</label>
+                                                <select id="planet-choice" v-model="planetChoice" @change="resetOutput">
+                                                    <option> </option>
+                                                    <option>Vulcan</option>
+                                                    <option>Andoria</option>
+                                                    <option>Qo'noS</option>
+                                                    <option>Bajor</option>
+                                                    <option>Risa</option>
+                                                    <option>Romulus</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="warp-factor">Warp factor</label>
+                                                <select id="warp-factor" v-model="warpFactor" @change="resetOutput">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="9.9">9.9</option>
+                                                </select>
+                                            </div>
+                                        </div>            
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Time</legend>
+                                <div class="well well-lg">
+                                    <div id="calculation">
+                                        <div v-if="!planetChoice">
+                                            <p>Choose Planet to Travel To.</p>
+                                        </div>
+                                        <div v-else>
+                                            <p>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</p>                        
+                                        </div>
+                                        <div v-if="formSubmitted">
+                                            <em>Travel Time</em>: 
+                                            <div v-if="countedInYears">
+                                                <span>{{ years }}</span> years
+                                            </div>                       
+                                            <div v-else-if="countedInWeeks">
+                                                <span>{{ weeks }}</span> weeks
+                                            </div>                        
+                                            <div v-else-if="countedInDays">
+                                                <span>{{ days }}</span> days
+                                            </div>                       
+                                            <div v-else-if="countedInHours">
+                                                <span>{{ hours }}</span> hours
+                                            </div>                         
+                                            <div v-else-if="countedInMinutes">
+                                                <span>{{ minutes }}</span> minutes
+                                            </div>                       
+                                            <div v-else-if="countedInSeconds">
+                                                <span>{{ seconds }}</span> seconds
+                                            </div>                        
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <label for="warp-factor">Warp Factor</label>
-                            <select id="warp-factor" v-model="warpFactor" @change="resetOutput">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div v-else-if="selectedDomain === 'deep-space'">
-                        <div class="form-field">
-                            <label for="planet-choice">Planet Name</label>
-                            <select id="planet-choice" v-model="planetChoice" @change="resetOutput">
-                                <option> </option>
-                                <option>Vulcan</option>
-                                <option>Andoria</option>
-                                <option>Qo'noS</option>
-                                <option>Bajor</option>
-                                <option>Risa</option>
-                                <option>Romulus</option>
-                            </select>
-                        </div>
-                        <div class="form-field">
-                            <label for="warp-factor">Warp factor</label>
-                            <select id="warp-factor" v-model="warpFactor" @change="resetOutput">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="9.9">9.9</option>
-                            </select>
+                        <div class="row rows">
+                            <button type="reset" class="btn btn-danger" id="reset">Reset</button>
+                            <button type="submit" class="btn btn-primary" v-bind:disabled="!formIsValid">Calculate</button>
                         </div>
                     </div>
 
-                    <div>
-                        <button type="reset" id="reset">Reset</button>
-                        <button type="submit" v-bind:disabled="!formIsValid">Calculate</button>
-                    </div>
                 </div>
             </form>
+            <hr>
             <footer>
-                <div id="calculation">
-                    <div v-if="!planetChoice">
-                        <h2>Choose Planet to Travel To.</h2>
-                    </div>
-                    <div v-else>
-                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
-                    </div>
-                    <div v-if="formSubmitted">
-                        <em>Travel Time</em>: 
-                        <div v-if="countedInYears">
-                            <span>{{ years }}</span> years
-                        </div>                       
-                        <div v-else-if="countedInWeeks">
-                            <span>{{ weeks }}</span> weeks
-                        </div>                        
-                        <div v-else-if="countedInDays">
-                            <span>{{ days }}</span> days
-                        </div>                       
-                        <div v-else-if="countedInHours">
-                            <span>{{ hours }}</span> hours
-                        </div>                         
-                        <div v-else-if="countedInMinutes">
-                            <span>{{ minutes }}</span> minutes
-                        </div>                       
-                        <div v-else-if="countedInSeconds">
-                            <span>{{ seconds }}</span> seconds
-                        </div>                        
-                    </div>
-                    <div v-if="formSubmitted">
-                        <p>
-                            {{ comment }}
-                        </p>
+                <div class="container">
+                    <div class="jumbotron">
+                        <div class="buttons" v-if="formSubmitted">
+                            <p>
+                                {{ comment }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </footer>

@@ -1,0 +1,67 @@
+form{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.well-centered {
+    display: flex;
+    justify-content: center;
+}
+
+.row-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row-flex-wrap {
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.row-flex > div[class*='col-'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch; /* Ensure columns stretch to the same height */
+}
+
+.container-flex > div[class*='col-'] {
+    margin: -0.2px; /* hack adjust for wrapping */
+}
+
+.container-flex > div[class*='col-'] div, .row-flex > div[class*='col-'] div {
+    width: 100%;
+}
+
+.flex-col {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.flex-grow {
+    display: flex;
+    flex-grow: 2;
+}
+
+.rows {
+    margin: auto;
+    max-width: 300px;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column; /* Ensure stacking within each column */
+    flex: 1;
+}
+
+.stack .well {
+    flex-grow: 1; /* Make wells grow to the available height */
+    display: flex;
+    flex-direction: column;
+}

@@ -17,17 +17,17 @@ class SolarCalculator {
     seconds () {
         const planet = this.getPlanet();
         const lightSeconds = planet.distanceFromEarth / this._velocity;
-        return lightSeconds;
+        return lightSeconds.toFixed(2);
     }
     
     minutes () {
         const lightMinutes = this.seconds() / 60;
-        return lightMinutes;
+        return lightMinutes.toFixed(2);
     }
     
     hours () {
         const lightHours = this.minutes() / 60;
-        return lightHours;
+        return lightHours.toFixed(2);
     }
 };
 
@@ -53,29 +53,29 @@ class ExoCalculator {
     seconds () {
         const planet = this.getPlanet();
         const lightSeconds = (planet.distanceFromEarth * (9.461 * Math.pow(10, 12))) / this._velocity;
-        return lightSeconds;
+        return lightSeconds.toFixed(2);
     }
     
     minutes () {
         const lightMinutes = this.seconds() / 60;
-        return lightMinutes;
+        return lightMinutes.toFixed(2);
     }
     
     hours () {
         const lightHours = this.minutes() / 60;
-        return lightHours;
+        return lightHours.toFixed(2);
     }
 
     days () {
         const lightDays = this.hours() / 24;
-        return lightDays;
+        return lightDays.toFixed(2);
     } 
     weeks () {
         const lightWeeks = this.days() / 7;
-        return lightWeeks;
+        return lightWeeks.toFixed(2);
     }
     years () {
         const lightYears = this.weeks() / 52;
-        return lightYears;
+        return lightYears.toFixed(2);
     }
 };
