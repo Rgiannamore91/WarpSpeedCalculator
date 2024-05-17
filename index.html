@@ -37,11 +37,12 @@
             </header>
             <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
                 <div class="form-row">
-                    <legend class="text-center">Travel Domain</legend>
+                    
                     <div class="container-fluid form-grid">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="well well-lg well-centered">
+                        <div class="row row-flex row-flex-wrap align-items-stretch">
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Domain</legend>
+                                <div class="well well-lg">
                                     <div class="form-group">
                                         <div>
                                             <input type="radio" id="solar-system" value="solar-system" v-model="selectedDomain" @change="resetFields">
@@ -54,8 +55,9 @@
                                     </div>                          
                                 </div>                                
                             </div>
-                            <div class="col-sm-4">
-                                <div class="well well-lg well-centered">
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Details</legend>
+                                <div class="well well-lg">
                                     <div class="form-group">
                                         <div v-if="selectedDomain === 'solar-system'">
                                             <div class="form-field">
@@ -111,48 +113,54 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-4 stack">
+                                <legend class="text-center">Travel Time</legend>
+                                <div class="well well-lg">
+                                    <div id="calculation">
+                                        <div v-if="!planetChoice">
+                                            <p>Choose Planet to Travel To.</p>
+                                        </div>
+                                        <div v-else>
+                                            <p>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</p>                        
+                                        </div>
+                                        <div v-if="formSubmitted">
+                                            <em>Travel Time</em>: 
+                                            <div v-if="countedInYears">
+                                                <span>{{ years }}</span> years
+                                            </div>                       
+                                            <div v-else-if="countedInWeeks">
+                                                <span>{{ weeks }}</span> weeks
+                                            </div>                        
+                                            <div v-else-if="countedInDays">
+                                                <span>{{ days }}</span> days
+                                            </div>                       
+                                            <div v-else-if="countedInHours">
+                                                <span>{{ hours }}</span> hours
+                                            </div>                         
+                                            <div v-else-if="countedInMinutes">
+                                                <span>{{ minutes }}</span> minutes
+                                            </div>                       
+                                            <div v-else-if="countedInSeconds">
+                                                <span>{{ seconds }}</span> seconds
+                                            </div>                        
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="row rows">
+                            <button type="reset" class="btn btn-danger" id="reset">Reset</button>
+                            <button type="submit" class="btn btn-primary" v-bind:disabled="!formIsValid">Calculate</button>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <button type="reset" id="reset">Reset</button>
-                        <button type="submit" v-bind:disabled="!formIsValid">Calculate</button>
-                    </div>
+
                 </div>
             </form>
             <footer>
-                <div id="calculation">
-                    <div v-if="!planetChoice">
-                        <h2>Choose Planet to Travel To.</h2>
-                    </div>
-                    <div v-else>
-                        <h2>To {{ planetChoice }} at Warp Factor {{ warpFactor }}</h2>                        
-                    </div>
-                    <div v-if="formSubmitted">
-                        <em>Travel Time</em>: 
-                        <div v-if="countedInYears">
-                            <span>{{ years }}</span> years
-                        </div>                       
-                        <div v-else-if="countedInWeeks">
-                            <span>{{ weeks }}</span> weeks
-                        </div>                        
-                        <div v-else-if="countedInDays">
-                            <span>{{ days }}</span> days
-                        </div>                       
-                        <div v-else-if="countedInHours">
-                            <span>{{ hours }}</span> hours
-                        </div>                         
-                        <div v-else-if="countedInMinutes">
-                            <span>{{ minutes }}</span> minutes
-                        </div>                       
-                        <div v-else-if="countedInSeconds">
-                            <span>{{ seconds }}</span> seconds
-                        </div>                        
-                    </div>
-                    <div v-if="formSubmitted">
-                        <p>
-                            {{ comment }}
-                        </p>
-                    </div>
+                <div class="buttons" v-if="formSubmitted">
+                    <p>
+                        {{ comment }}
+                    </p>
                 </div>
             </footer>
         </div>
