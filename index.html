@@ -12,29 +12,22 @@
     <body>
         <div id="app">
             <header>
-                <h1>Warp Speed Travel Time Calculator</h1>
+                <nav class="navbar navbar-inverse">
+                    <h1 class="navbar-text">Warp Speed Travel Time Calculator</h1>
+                </nav>
+
                 <div class="container">
-                    <div class="panel=group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading text-center">
-                                <h2 class="panel-title">
-                                    <a data-toggle="collapse" href="#summary">Summary</a>
-                                </h2>
-                            </div>
-                        </div>
+                    <div class="page-header">
+                        <h3>Summary</h3>      
                     </div>
-                    <div id="summary" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>
-                                This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
-                            </p>
-                        </div>
-                        <div class="panel-footer">
-                            Engage!
-                        </div>
-                    </div>
+                    <div class="summary">
+                        <p>
+                            This is a simple web app for my portfolio that demonstrates my abilities in Vue.js, Object Oriented Programming in Javascript, and styling with Bootstrap. It calculates the travel time to different planets in our Solar System and in the Star Trek univers's deep space using the formula <em><b>v = w<sup>10/3</sup>c</b></em> (where v stands for the velocity, w stands for the warp factor, and c stands for the speed of light).
+                        </p>
+                    </div>   
                 </div>
             </header>
+            <hr>
             <form v-on:reset="resetFields" v-on:submit.prevent="submitForm">
                 <div class="form-row">
                     
@@ -156,11 +149,16 @@
 
                 </div>
             </form>
+            <hr>
             <footer>
-                <div class="buttons" v-if="formSubmitted">
-                    <p>
-                        {{ comment }}
-                    </p>
+                <div class="container">
+                    <div class="jumbotron">
+                        <div class="buttons" v-if="formSubmitted">
+                            <p>
+                                {{ comment }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>
